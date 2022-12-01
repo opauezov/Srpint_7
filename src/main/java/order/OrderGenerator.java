@@ -1,4 +1,4 @@
-package Order;
+package order;
 
 import com.github.javafaker.Faker;
 

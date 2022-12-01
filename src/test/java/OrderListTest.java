@@ -1,4 +1,5 @@
-import Order.OrderClient;
+import io.qameta.allure.junit4.DisplayName;
+import order.OrderClient;
 import io.restassured.response.Response;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +14,7 @@ public class OrderListTest {
     public void setUp() {
         orderClient = new OrderClient();
     }
-
+    @DisplayName("Список заказов")
     @Test
     public void checkOrderList() {
         Response response = orderClient.orderList();

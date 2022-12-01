@@ -1,7 +1,8 @@
-import Courier.Courier;
-import Courier.CourierClient;
-import Courier.CourierGenerator;
-import Courier.Credentials;
+import courier.Courier;
+import courier.CourierClient;
+import courier.CourierGenerator;
+import courier.Credentials;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
@@ -47,7 +48,7 @@ public class CourierCreateTest {
         }
 
     }
-
+    @DisplayName("Создание курьера")
     @Test
     public void checkPostCreateCourier() {
         Response responseCreateCourier = courierClient.createCourier(courier);
@@ -55,7 +56,7 @@ public class CourierCreateTest {
                 .and().body("ok", equalTo(expectedResult));
 
     }
-
+    @DisplayName("Создание курьера, логин занят")
     @Test
     public void checkPostCreateSameCourier() {
         courierClient.createCourier(courier);

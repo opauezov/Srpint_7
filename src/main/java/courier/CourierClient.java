@@ -1,6 +1,7 @@
-package Courier;
+package courier;
 
-import Client.Client;
+import client.Client;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
@@ -10,6 +11,7 @@ public class CourierClient extends Client {
     private final String LOGIN_COURIER = "/api/v1/courier/login";
     private final String DELETE_COURIER = "api/v1/courier/{jsonID}";
 
+    @Step("Создание курьера")
     public Response createCourier(Courier courier) {
         return given()
                 .spec(getSpec())
@@ -17,7 +19,7 @@ public class CourierClient extends Client {
                 .when()
                 .post(CREATE_COURIER);
     }
-
+    @Step("Логин курьера")
     public Response loginCourier(Credentials courier) {
         return given()
                 .spec(getSpec())
@@ -25,7 +27,7 @@ public class CourierClient extends Client {
                 .when()
                 .post(LOGIN_COURIER);
     }
-
+    @Step("Удаление курьера")
     public void deleteCourier(int id) {
         given()
                 .spec(getSpec())

@@ -1,6 +1,7 @@
-package Order;
+package order;
 
-import Client.Client;
+import client.Client;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
@@ -10,6 +11,7 @@ public class OrderClient extends Client {
     private final String ORDER_DELETE = "/api/v1/orders/cancel?track={jsonTrack}";
     private final String ORDER_LIST = "/api/v1/orders";
 
+    @Step("Создание заказа")
     public Response orderCreate(Order order) {
         Response response = given()
                 .spec(getSpec())
@@ -19,6 +21,7 @@ public class OrderClient extends Client {
         return response;
     }
 
+    @Step("Удаление заказа")
     public void orderDelete(Order order, int track) {
         Response response = given()
                 .spec(getSpec())
@@ -28,6 +31,7 @@ public class OrderClient extends Client {
         response.then().statusCode(200);
     }
 
+    @Step("Список заказов")
     public Response orderList() {
         return given()
                 .spec(getSpec())

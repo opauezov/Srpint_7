@@ -1,6 +1,7 @@
-import Order.Order;
-import Order.OrderClient;
-import Order.OrderGenerator;
+import io.qameta.allure.junit4.DisplayName;
+import order.Order;
+import order.OrderClient;
+import order.OrderGenerator;
 import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Before;
@@ -45,7 +46,7 @@ public class OrderCreateTest {
         Integer track = response.then().extract().path("track");
         orderClient.orderDelete(order, track);
     }
-
+    @DisplayName("Создание заказа")
     @Test
     public void orderCreate() {
         response = orderClient.orderCreate(order);

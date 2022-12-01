@@ -1,6 +1,7 @@
-import Courier.Courier;
-import Courier.CourierClient;
-import Courier.CourierGenerator;
+import courier.Courier;
+import courier.CourierClient;
+import courier.CourierGenerator;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class CourierCreateWOPTest {
         this.expectedStatusCode = expectedStatusCode;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {index}")
     public static Object[][] getCourierData() {
         return new Object[][]{
                 {CourierGenerator.getWithoutLogin(), "Недостаточно данных для создания учетной записи", 400,},
@@ -38,6 +39,7 @@ public class CourierCreateWOPTest {
         courierClient = new CourierClient();
     }
 
+    @DisplayName("Создание курьера, некорректные данные")
     @Test
     public void checkPostCreateWithoutPasswordOrLogin() {
         Response response = courierClient.createCourier(courier);
